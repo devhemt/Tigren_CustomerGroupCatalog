@@ -1,0 +1,131 @@
+//
+//  Amasty Groupcat Sample Product Styles
+//  ____________________________________________
+
+//
+//  Variables
+//  --------------------------------------------
+
+@amgroupcat-product-image-icon__background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI2IiBoZWlnaHQ9IjExOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjMuMDQ2IDBMMzQuMDM5IDExLjMzNGMtLjI3NCAwLS41NDkuMDkxLS44MjMuMjc0TDAgMjQuNzd2NjguNDZsNjIuNTg4IDI0LjU4Ny40NTguMTgzLjQ1Ny0uMTgzTDEyNiA5My4yM1YyNC43N0w2My4wNDYgMHptNTguMTk2IDI1LjU5M2wtMjUuMzQ3IDkuOTYyTDM3LjcgMTIuNzA1bDI1LjM0Ny05Ljk2MyA1OC4xOTYgMjIuODV6bS01OC4xOTYgMjIuODVMNC44NSAyNS41OTNsMjkuMzcyLTExLjUxNyA1OC4xOTYgMjIuODUtMjkuMzcyIDExLjUxN3pNMi41NjIgMjcuNTEybDU5LjIwMyAyMy4yMTZ2NjMuODlMMi41NjIgOTEuNDAydi02My44OXptNjEuODU2IDg3LjEwNnYtNjMuODlsNTkuMjAzLTIzLjIxNnY2My44OWwtNTkuMjAzIDIzLjIxNnoiIGZpbGw9IiM3OTgxOTciLz48L3N2Zz4=') no-repeat center;
+@amgroupcat-compare-button-icon__background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTQuNSAxMlY4LjAzMWgtNFYxMmg0em01Ljk2OS0xMkg2LjV2MTJoMy45NjlWMHpNMTYuNSA0LjAzMWgtNFYxMmg0VjQuMDMxeiIgZmlsbD0iIzMzMzQ1NiIvPjwvc3ZnPg==') no-repeat center;
+@amgroupcat-wishlist-button-icon__background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjE1NiAxLjM3NUMxMy4xMTUuODk1IDEyLjA2Mi44NTUgMTEgMS4yNWMtMS4wNjMuMzc1LTEuODMzIDEuMDgzLTIuMzEzIDIuMTI1bC0uMTI0LjI1Yy0uMDIxLjA4My0uMDQyLjE3Ny0uMDYzLjI4MWExLjExNSAxLjExNSAwIDAwLS4wOTQtLjI4MSAxLjIyIDEuMjIgMCAwMC0uMDk0LS4yNUM3LjgzMyAyLjMzMyA3LjA2MyAxLjYyNSA2IDEuMjUgNC45MzcuODU0IDMuODg1Ljg5NiAyLjg0NCAxLjM3NWMtMS4wMjEuNS0xLjczIDEuMjkyLTIuMTI1IDIuMzc1Qy4zNDQgNC44MzMuNDA2IDUuODk2LjkwNiA2LjkzOGMuMjMuNTIuNzUgMS4yNCAxLjU2MyAyLjE1NmE3Ny41MjUgNzcuNTI1IDAgMDAyLjU5NCAyLjY1NmMuODk1Ljg3NSAxLjY4NyAxLjYzNSAyLjM3NSAyLjI4MUw4LjUgMTV2LS4wMzFWMTVsMS4wMzEtLjk2OWE5Ny42NDMgOTcuNjQzIDAgMDAyLjQwNi0yLjI4MUE2MS4wMyA2MS4wMyAwIDAwMTQuNSA5LjA5NGMuODMzLS45MTcgMS4zNjUtMS42MzYgMS41OTQtMi4xNTYuNS0xLjA0Mi41NTItMi4xMDUuMTU2LTMuMTg4LS4zNzUtMS4wODMtMS4wNzMtMS44NzUtMi4wOTQtMi4zNzV6IiBmaWxsPSIjMzMzNDU2Ii8+PC9zdmc+') no-repeat center;
+@amgroupcat-product-image__size: 210px;
+@amgroupcat-product-options-text__color: #798197;
+@amgroupcat-button__color: #333456;
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amgroupcat-product-wrapper {
+        pointer-events: none;
+    }
+
+    .amgroupcat-product-information {
+        display: flex;
+        margin-bottom: 30px;
+    }
+
+    .amgroupcat-product-image {
+        & {
+            position: relative;
+            width: @amgroupcat-product-image__size;
+            height: @amgroupcat-product-image__size;
+            background: #f6f7fa;
+        }
+
+        &:before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 126px;
+            height: 118px;
+            background: @amgroupcat-product-image-icon__background;
+            content: '';
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .amgroupcat-product-options {
+        .amgroupcat-name,
+        .amgroupcat-price {
+            margin-bottom: 8px;
+            color: @amgroupcat-product-options-text__color;
+        }
+
+        .amgroupcat-name {
+            font-weight: 300;
+            font-size: 2.4rem;
+            line-height: 3.3rem;
+        }
+
+        .amgroupcat-price {
+            font-weight: 600;
+            font-size: 2.6rem;
+            line-height: 3.5rem;
+        }
+
+        .amgroupcat-request {
+            margin-bottom: 25px;
+            color: @amgroupcat-button__color;
+        }
+
+        .amgroupcat-name + .amgroupcat-line {
+            margin-top: 45px;
+        }
+
+        .amgroupcat-line {
+            display: block;
+            height: 1px;
+            background: @amgroupcat-product-options-text__color;
+        }
+    }
+
+    .amgroupcat-marketing-buttons .amgroupcat-button {
+        & {
+            position: relative;
+            padding-left: 25px;
+            color: @amgroupcat-button__color;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            font-weight: 600;
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+        }
+
+        &:not(:first-child) {
+            margin-left: 16px;
+        }
+
+        &:before {
+            position: absolute;
+            left: 0;
+            width: 23px;
+            height: 20px;
+            content: '';
+        }
+
+        &.-compare:before {
+            background: @amgroupcat-compare-button-icon__background;
+        }
+
+        &.-wishlist:before {
+            background: @amgroupcat-wishlist-button-icon__background;
+        }
+    }
+
+    .amgroupcat-options-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 14px;
+    }
+
+    .amgroupcat-cart-button {
+        padding: 10px;
+        max-width: 120px;
+        background: @amgroupcat-button__color;
+        color: #fff;
+    }
+}

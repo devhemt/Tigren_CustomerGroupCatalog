@@ -1,0 +1,21 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Customer Group Catalog for Magento 2
+ */
+/** @var \Magento\Backend\Block\Template $block */
+?>
+<div class="admin__field-tooltip amgroupcat-tooltip">
+    <a class="admin__field-tooltip-action action-help"
+       target="_blank"
+       tabindex="1"
+       data-bind="attr: {href: tooltip.link}">
+    </a>
+    <div class="admin__field-tooltip-content amgroupcat-image" data-bind="html: tooltip.description">
+        <?= $block->escapeHtml(
+            __('Please, use Country Code instead of full Country Name in case to create a'
+                . ' restriction by default shipping/billing address.')
+        ); ?>
+    </div>
+</div>

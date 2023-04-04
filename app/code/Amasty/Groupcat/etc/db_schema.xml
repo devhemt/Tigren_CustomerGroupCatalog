@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Customer Group Catalog for Magento 2
+ */-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="amasty_groupcat_rule" resource="default" engine="innodb" comment="Customer Group Catalog Rule">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Rule Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="boolean" name="is_active" nullable="false" default="true" comment="Is Active"/>
+        <column xsi:type="mediumtext" name="conditions_serialized" nullable="true" comment="Products Conditions serialized"/>
+        <column xsi:type="mediumtext" name="actions_serialized" nullable="true" comment="Customer Conditions serialized"/>
+        <column xsi:type="smallint" name="forbidden_action" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Action on forbid"/>
+        <column xsi:type="smallint" name="forbidden_page_id" padding="6" unsigned="false" nullable="true" identity="false" comment="CMS page on forbid"/>
+        <column xsi:type="boolean" name="allow_direct_links" nullable="false" default="true" comment="Allow direct links or not flag"/>
+        <column xsi:type="boolean" name="hide_product" nullable="false" comment="Remove Product or not flag"/>
+        <column xsi:type="boolean" name="hide_category" nullable="false" comment="Remove Category or not flag"/>
+        <column xsi:type="smallint" name="hide_cart" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Hide cart and show Price flag"/>
+        <column xsi:type="smallint" name="price_action" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Hide price, replace with block_id or show"/>
+        <column xsi:type="smallint" name="block_id_view" padding="6" unsigned="false" nullable="true" identity="false" comment="CMS block ID for price block replacement on product view"/>
+        <column xsi:type="smallint" name="block_id_list" padding="6" unsigned="false" nullable="true" identity="false" comment="CMS block ID for price block replacement on product list"/>
+        <column xsi:type="smallint" name="stock_status" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Stock status" disabled="true"/>
+        <column xsi:type="date" name="from_date" comment="From Date"/>
+        <column xsi:type="date" name="to_date" comment="To Date"/>
+        <column xsi:type="boolean" name="date_range_enabled" nullable="false" comment="Date range enabled"/>
+        <column xsi:type="decimal" name="from_price" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="From price" disabled="true"/>
+        <column xsi:type="decimal" name="to_price" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="To price" disabled="true"/>
+        <column xsi:type="smallint" name="by_price" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="By price" disabled="true"/>
+        <column xsi:type="boolean" name="price_range_enabled" nullable="false" comment="Price range enabled" disabled="true"/>
+        <column xsi:type="boolean" name="customer_group_enabled" nullable="false" comment="Customer group enabled"/>
+        <column xsi:type="int" name="priority" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Priority of the Rule"/>
+        <column xsi:type="boolean" name="hide_wishlist" nullable="false" comment="Hide Add to wishlist button or not flag"/>
+        <column xsi:type="boolean" name="hide_compare" nullable="false" comment="Hide Add to compare button or not flag"/>
+        <column xsi:type="boolean" name="apply_to_out_of_stock" nullable="true" default="0" comment="Apply Rule To Out Of Stock Products"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign"
+                    referenceId="AMASTY_GROUPCAT_RULE_FORBIDDEN_PAGE_ID_CMS_PAGE_PAGE_ID"
+                    table="amasty_groupcat_rule"
+                    column="forbidden_page_id"
+                    referenceTable="cms_page"
+                    referenceColumn="page_id"
+                    onDelete="SET NULL"
+        />
+        <constraint xsi:type="foreign"
+                    referenceId="AMASTY_GROUPCAT_RULE_BLOCK_ID_VIEW_CMS_BLOCK_BLOCK_ID"
+                    table="amasty_groupcat_rule"
+                    column="block_id_view"
+                    referenceTable="cms_block"
+                    referenceColumn="block_id"
+                    onDelete="SET NULL"
+                    disabled="true"
+        />
+        <constraint xsi:type="foreign"
+                    referenceId="AMASTY_GROUPCAT_RULE_BLOCK_ID_LIST_CMS_BLOCK_BLOCK_ID"
+                    table="amasty_groupcat_rule"
+                    column="block_id_list"
+                    referenceTable="cms_block"
+                    referenceColumn="block_id"
+                    onDelete="SET NULL"
+                    disabled="true"
+        />
+
+        <index referenceId="AMASTY_GROUPCAT_RULE_FORBIDDEN_PAGE_ID" indexType="btree">
+            <column name="forbidden_page_id"/>
+        </index>
+        <index referenceId="AMASTY_GROUPCAT_RULE_BLOCK_ID_VIEW" indexType="btree">
+            <column name="block_id_view"/>
+        </index>
+        <index referenceId="AMASTY_GROUPCAT_RULE_BLOCK_ID_LIST" indexType="btree">
+            <column name="block_id_list"/>
+        </index>
+    </table>
+
+    <table name="amasty_groupcat_rule_customer_group" resource="default" engine="innodb" comment="Rule Customer Group Relation">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Rule Id"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Group ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="customer_group_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign"
+                    referenceId="FK_CB356CEC5C2177ECEDD5B01271F40A6C"
+                    table="amasty_groupcat_rule_customer_group"
+                    column="customer_group_id"
+                    referenceTable="customer_group"
+                    referenceColumn="customer_group_id"
+                    onDelete="CASCADE"
+        />
+        <constraint xsi:type="foreign"
+                    referenceId="FK_74FDB921EE3177A72FA9D4C781730BEC"
+                    table="amasty_groupcat_rule_customer_group"
+                    column="rule_id"
+                    referenceTable="amasty_groupcat_rule" referenceColumn="rule_id" onDelete="CASCADE"
+        />
+    </table>
+
+    <table name="amasty_groupcat_rule_store" resource="default" engine="innodb" comment="Rule Store relation">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Rule Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store View ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="store_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign"
+                    referenceId="AMASTY_GROUPCAT_RULE_STORE_RULE_ID_AMASTY_GROUPCAT_RULE_RULE_ID"
+                    table="amasty_groupcat_rule_store"
+                    column="rule_id"
+                    referenceTable="amasty_groupcat_rule"
+                    referenceColumn="rule_id"
+                    onDelete="CASCADE"
+        />
+        <constraint xsi:type="foreign"
+                    referenceId="AMASTY_GROUPCAT_RULE_STORE_STORE_ID_STORE_STORE_ID"
+                    table="amasty_groupcat_rule_store"
+                    column="store_id"
+                    referenceTable="store"
+                    referenceColumn="store_id"
+                    onDelete="CASCADE"
+        />
+    </table>
+
+    <table name="amasty_groupcat_rule_category" resource="default" engine="innodb" comment="Rule Category Relation">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Rule Id"/>
+        <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Catalog Category ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="category_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign"
+                    referenceId="AMASTY_GROUPCAT_RULE_CTGR_RULE_ID_AMASTY_GROUPCAT_RULE_RULE_ID"
+                    table="amasty_groupcat_rule_category"
+                    column="rule_id"
+                    referenceTable="amasty_groupcat_rule"
+                    referenceColumn="rule_id"
+                    onDelete="CASCADE"
+        />
+        <constraint xsi:type="foreign"
+                    referenceId="AMASTY_GROUPCAT_RULE_CTGR_CTGR_ID_CAT_CTGR_ENTT_ENTT_ID"
+                    table="amasty_groupcat_rule_category"
+                    column="category_id"
+                    referenceTable="catalog_category_entity"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"
+        />
+    </table>
+
+    <table name="amasty_groupcat_rule_product" resource="default" engine="innodb" comment="Rule Catalog Product Matches">
+        <column xsi:type="int" name="rule_product_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Rule Product Id"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Rule Id"/>
+        <column xsi:type="int" name="from_time" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="From Time"/>
+        <column xsi:type="int" name="to_time" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="To time"/>
+        <column xsi:type="boolean" name="customer_group_enabled" nullable="false" comment="Is Customer Group Enabled"/>
+        <column xsi:type="smallint" name="customer_group_id" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Customer Group Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Catalog Product Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store Id"/>
+        <column xsi:type="smallint" name="price_action" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Hide, show or replace Price with block_id"/>
+        <column xsi:type="smallint" name="hide_cart" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Hide cart and show Price flag"/>
+        <column xsi:type="boolean" name="hide_product" nullable="false" comment="Remove Product or not flag"/>
+        <column xsi:type="int" name="priority" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Priority of the Rule"/>
+        <column xsi:type="boolean" name="hide_wishlist" nullable="false" comment="Hide Add to wishlist button or not flag"/>
+        <column xsi:type="boolean" name="hide_compare" nullable="false" comment="Hide Add to compare button or not flag"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_product_id"/>
+        </constraint>
+
+        <constraint xsi:type="unique" referenceId="IDX_A4AD497B15DF4D4CE8F4F0ADED3385A7">
+            <column name="rule_id"/>
+            <column name="from_time"/>
+            <column name="to_time"/>
+            <column name="store_id"/>
+            <column name="customer_group_enabled"/>
+            <column name="customer_group_id"/>
+            <column name="product_id"/>
+            <column name="priority"/>
+        </constraint>
+
+        <index referenceId="AMASTY_GROUPCAT_RULE_PRODUCT_CUSTOMER_GROUP_ENABLED" indexType="btree">
+            <column name="customer_group_enabled"/>
+        </index>
+        <index referenceId="AMASTY_GROUPCAT_RULE_PRODUCT_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <index referenceId="AMASTY_GROUPCAT_RULE_PRODUCT_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="AMASTY_GROUPCAT_RULE_PRODUCT_FROM_TIME" indexType="btree">
+            <column name="from_time"/>
+        </index>
+        <index referenceId="AMASTY_GROUPCAT_RULE_PRODUCT_TO_TIME" indexType="btree">
+            <column name="to_time"/>
+        </index>
+        <index referenceId="AMASTY_GROUPCAT_RULE_PRODUCT_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+        <index referenceId="IDX_E286668ACA26DD3F08A659FAB4A12B89" indexType="btree">
+            <column name="from_time"/>
+            <column name="to_time"/>
+            <column name="product_id"/>
+            <column name="price_action"/>
+            <column name="customer_group_enabled"/>
+            <column name="rule_id"/>
+            <column name="store_id"/>
+            <column name="customer_group_id"/>
+            <column name="priority"/>
+        </index>
+    </table>
+
+    <table name="amasty_groupcat_rule_customer" resource="default" engine="innodb" comment="Rule Customer Matches">
+        <column xsi:type="int" name="rule_customer_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Rule Customer Id"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Rule Id"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Customer Id"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_customer_id"/>
+        </constraint>
+
+        <index referenceId="AMASTY_GROUPCAT_RULE_CUSTOMER_CUSTOMER_ID" indexType="btree">
+            <column name="customer_id"/>
+        </index>
+        <index referenceId="AMASTY_GROUPCAT_RULE_CUSTOMER_RULE_ID_CUSTOMER_ID" indexType="btree">
+            <column name="rule_id"/>
+            <column name="customer_id"/>
+        </index>
+    </table>
+
+    <table name="amasty_groupcat_request" resource="default" engine="innodb" comment="Amasty Groupcat Requests">
+        <column xsi:type="int" name="request_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Request Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="varchar" name="phone" nullable="false" length="255" comment="Phone"/>
+        <column xsi:type="int" name="product_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Product id"/>
+        <column xsi:type="smallint" name="store_id" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="Store id"/>
+        <column xsi:type="text" name="comment" nullable="false" comment="Comment"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="Status"/>
+        <column xsi:type="text" name="message_text" nullable="false" comment="Message Text"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="request_id"/>
+        </constraint>
+    </table>
+</schema>

@@ -1,0 +1,21 @@
+<div class="amgroupcat-product-wrapper">
+    <div class="amgroupcat-product-information">
+        <div class="amgroupcat-product-image"></div>
+        <div class="amgroupcat-options-wrapper">
+            <div class="amgroupcat-product-options">
+                <p class="amgroupcat-name" translate="'Product Name'"></p>
+                <p class="amgroupcat-request" if="$data.hidePrice() === '3'" translate="'ask a price'"></p>
+                <p class="amgroupcat-price" if="$data.hidePrice() === '0'" data-bind="text: '$47.00'"></p>
+                <span class="amgroupcat-line"></span>
+            </div>
+            <button class="amgroupcat-cart-button"
+                    if="$data.hideCart() !== '1' && $data.hidePrice() === '0'"
+                    translate="'Add to Cart'">
+            </button>
+        </div>
+    </div>
+    <div class="amgroupcat-marketing-buttons">
+        <span class="amgroupcat-button -compare" if="$data.hideCompare() === '0'" translate="'Add to Compare'"></span>
+        <span class="amgroupcat-button -wishlist" if="$data.hideWishlist() === '0'" translate="'Add to Wish List'"></span>
+    </div>
+</div>

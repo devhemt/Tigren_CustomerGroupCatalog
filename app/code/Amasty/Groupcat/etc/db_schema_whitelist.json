@@ -1,0 +1,139 @@
+{
+    "amasty_groupcat_rule": {
+        "column": {
+            "rule_id": true,
+            "name": true,
+            "is_active": true,
+            "conditions_serialized": true,
+            "actions_serialized": true,
+            "forbidden_action": true,
+            "forbidden_page_id": true,
+            "allow_direct_links": true,
+            "hide_product": true,
+            "hide_category": true,
+            "hide_cart": true,
+            "price_action": true,
+            "block_id_view": true,
+            "block_id_list": true,
+            "stock_status": true,
+            "from_date": true,
+            "to_date": true,
+            "date_range_enabled": true,
+            "from_price": true,
+            "to_price": true,
+            "by_price": true,
+            "price_range_enabled": true,
+            "customer_group_enabled": true,
+            "priority": true,
+            "hide_wishlist": true,
+            "hide_compare": true,
+            "apply_to_out_of_stock": true
+        },
+        "index": {
+            "AMASTY_GROUPCAT_RULE_FORBIDDEN_PAGE_ID": true,
+            "AMASTY_GROUPCAT_RULE_BLOCK_ID_VIEW": true,
+            "AMASTY_GROUPCAT_RULE_BLOCK_ID_LIST": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_GROUPCAT_RULE_FORBIDDEN_PAGE_ID_CMS_PAGE_PAGE_ID": true,
+            "AMASTY_GROUPCAT_RULE_BLOCK_ID_VIEW_CMS_BLOCK_BLOCK_ID": true,
+            "AMASTY_GROUPCAT_RULE_BLOCK_ID_LIST_CMS_BLOCK_BLOCK_ID": true
+        }
+    },
+    "amasty_groupcat_rule_customer_group": {
+        "column": {
+            "rule_id": true,
+            "customer_group_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_CB356CEC5C2177ECEDD5B01271F40A6C": true,
+            "FK_74FDB921EE3177A72FA9D4C781730BEC": true
+        }
+    },
+    "amasty_groupcat_rule_store": {
+        "column": {
+            "rule_id": true,
+            "store_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_GROUPCAT_RULE_STORE_RULE_ID_AMASTY_GROUPCAT_RULE_RULE_ID": true,
+            "AMASTY_GROUPCAT_RULE_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "amasty_groupcat_rule_category": {
+        "column": {
+            "rule_id": true,
+            "category_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_GROUPCAT_RULE_CTGR_RULE_ID_AMASTY_GROUPCAT_RULE_RULE_ID": true,
+            "AMASTY_GROUPCAT_RULE_CTGR_CTGR_ID_CAT_CTGR_ENTT_ENTT_ID": true
+        }
+    },
+    "amasty_groupcat_rule_product": {
+        "column": {
+            "rule_product_id": true,
+            "rule_id": true,
+            "from_time": true,
+            "to_time": true,
+            "customer_group_enabled": true,
+            "customer_group_id": true,
+            "product_id": true,
+            "store_id": true,
+            "price_action": true,
+            "hide_cart": true,
+            "hide_product": true,
+            "priority": true,
+            "hide_wishlist": true,
+            "hide_compare": true
+        },
+        "index": {
+            "AMASTY_GROUPCAT_RULE_PRODUCT_CUSTOMER_GROUP_ENABLED": true,
+            "AMASTY_GROUPCAT_RULE_PRODUCT_CUSTOMER_GROUP_ID": true,
+            "AMASTY_GROUPCAT_RULE_PRODUCT_STORE_ID": true,
+            "AMASTY_GROUPCAT_RULE_PRODUCT_FROM_TIME": true,
+            "AMASTY_GROUPCAT_RULE_PRODUCT_TO_TIME": true,
+            "AMASTY_GROUPCAT_RULE_PRODUCT_PRODUCT_ID": true,
+            "IDX_E286668ACA26DD3F08A659FAB4A12B89": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNQ_A4AD497B15DF4D4CE8F4F0ADED3385A7": true
+        }
+    },
+    "amasty_groupcat_rule_customer": {
+        "column": {
+            "rule_customer_id": true,
+            "rule_id": true,
+            "customer_id": true
+        },
+        "index": {
+            "AMASTY_GROUPCAT_RULE_CUSTOMER_CUSTOMER_ID": true,
+            "AMASTY_GROUPCAT_RULE_CUSTOMER_RULE_ID_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "amasty_groupcat_request": {
+        "column": {
+            "request_id": true,
+            "name": true,
+            "email": true,
+            "phone": true,
+            "product_id": true,
+            "store_id": true,
+            "comment": true,
+            "created_at": true,
+            "status": true,
+            "message_text": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Customer Group Catalog for Magento 2
+ */ /** @var \Amasty\Groupcat\Block\Adminhtml\Request\Edit\Info $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+<section class="admin__page-section request-view-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $escaper->escapeHtml(__('Get a Quote Information')); ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <table class="admin__table-secondary request-information-table">
+            <?php foreach ($block->getRequestData() as $data):?>
+                <tr>
+                    <th><?=$escaper->escapeHtml($data['label']); ?></th>
+                    <td><?= $escaper->escapeHtml($data['value']); ?></td>
+                </tr>
+            <?php endforeach;?>
+        </table>
+    </div>
+</section>
+<section class="admin__page-section request-view-answer-section">
+    <div id="request-view-answer" class="request-view-answer">
+        <form action="<?= $escaper->escapeUrl($block->getSubmitUrl()); ?>" method="post">
+            <input name="form_key" type="hidden" value="<?= $block->escapeHtml($block->getFormKey()) ?>" />
+            <div class="request-answer-block">
+                <div class="admin__field field-row">
+                    <label class="admin__field-label"
+                           for="email_text"><?= $escaper->escapeHtml(__('Email Text')); ?></label>
+                    <div class="admin__field-control">
+                        <textarea name="email_text"
+                                  class="admin__control-textarea"
+                                  rows="3"
+                                  cols="5"
+                                  id="email_text"></textarea>
+                    </div>
+                </div>
+                <div class="admin__field">
+                    <div class="review-actions">
+                        <?= $block->getChildHtml('submit_button') ?>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

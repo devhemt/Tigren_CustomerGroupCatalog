@@ -1,0 +1,255 @@
+//
+//  Amasty Groupcat Rules Styles
+//  ____________________________________________
+
+//
+//  Variables
+//  --------------------------------------------
+
+@amgroupcat-datepicker__background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03LjQ3IDE2LjA1N2gyLjQ1NnYtMi40NTNINy40N3YyLjQ1M3ptMy40NiAzLjI4NGgyLjQ1NHYtMi40NTNIMTAuOTN2Mi40NTN6bS0zLjQ2IDBoMi40NTZ2LTIuNDUzSDcuNDd2Mi40NTN6bTAtNi41N2gyLjQ1NlYxMC4zMkg3LjQ3djIuNDUyek0xOC4wMTIgNS41NGMuNTYzIDAgMS4wMTgtLjQ1NSAxLjAxOC0xLjAxN1YxLjAxN0MxOS4wMy40NTUgMTguNTc1IDAgMTguMDEyIDBzLTEuMDE5LjQ1NS0xLjAxOSAxLjAxN3YzLjUwNmMuMDAxLjU2My40NTYgMS4wMTcgMS4wMTkgMS4wMTd6bS0xMi4wMjggMEM2LjU0NSA1LjU0IDcgNS4wODUgNyA0LjUyM1YxLjAxN2ExLjAxNyAxLjAxNyAwIDEwLTIuMDM2IDB2My41MDZjMCAuNTYzLjQ1NiAxLjAxNyAxLjAyIDEuMDE3ek00LjAwOCAxNi4wNTdoMi40NTd2LTIuNDUzSDQuMDA4djIuNDUzem0wIDMuMjg0aDIuNDU3di0yLjQ1M0g0LjAwOHYyLjQ1M3ptNi45MjItMy4yODRoMi40NTR2LTIuNDUzSDEwLjkzdjIuNDUzem02LjkxNiAwaDIuNDU3di0yLjQ1M2gtMi40NTd2Mi40NTN6bTAtMy4yODVoMi40NTd2LTIuNDUzaC0yLjQ1N3YyLjQ1MnptMS41MTktMTEuMDgzVjIuODJhMi4wNDMgMi4wNDMgMCAwMS0xLjM1MyAzLjU3MiAyLjA0NCAyLjA0NCAwIDAxLTIuMDQ1LTIuMDQ0YzAtLjYxLjI3LTEuMTU2LjY5MS0xLjUyOFYxLjY4OUg3LjMzNlYyLjgyYy40MjIuMzcyLjY5Mi45MTkuNjkyIDEuNTI4QTIuMDQ0IDIuMDQ0IDAgMTE0LjYzIDIuODJWMS42ODlIMFYyNGgyNFYxLjY4OWgtNC42MzV6TTIuMjc1IDcuNUgyMS43N3YxNC4yMjVIMi4yNzZWNy41em04LjY1NSA1LjI3MWgyLjQ1NFYxMC4zMkgxMC45M3YyLjQ1MnptMy40NiAwaDIuNDU0VjEwLjMySDE0LjM5djIuNDUyem0wIDYuNTdoMi40NTR2LTIuNDUzSDE0LjM5djIuNDUzem0wLTMuMjg0aDIuNDU0di0yLjQ1M0gxNC4zOXYyLjQ1M3oiIGZpbGw9IiNBNEEyQTIiLz48L3N2Zz4=');
+@amgroupcat-radio-checked__background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjgiIGZpbGw9IiMzQjk4RkMiLz48ZyBmaWx0ZXI9InVybCgjZmlsdGVyMF9kKSI+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjIuNjY3IiBmaWxsPSIjZmZmIi8+PC9nPjxkZWZzPjxmaWx0ZXIgaWQ9ImZpbHRlcjBfZCIgeD0iNC4zMzMiIHk9IjQuMzMzIiB3aWR0aD0iNy4zMzMiIGhlaWdodD0iNy4zMzMiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9IkJhY2tncm91bmRJbWFnZUZpeCIvPjxmZUNvbG9yTWF0cml4IGluPSJTb3VyY2VBbHBoYSIgdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAxMjcgMCIvPjxmZU9mZnNldC8+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iLjUiLz48ZmVDb2xvck1hdHJpeCB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAuMiAwIi8+PGZlQmxlbmQgaW4yPSJCYWNrZ3JvdW5kSW1hZ2VGaXgiIHJlc3VsdD0iZWZmZWN0MV9kcm9wU2hhZG93Ii8+PGZlQmxlbmQgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0iZWZmZWN0MV9kcm9wU2hhZG93IiByZXN1bHQ9InNoYXBlIi8+PC9maWx0ZXI+PC9kZWZzPjwvc3ZnPg==');
+@amgroupcat-checkbox__length: 20px;
+@amgroupcat-with-tooltip__width: ~'calc(100% - 45px - 4px)';
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amgroupcat-fieldset-container {
+        & {
+            margin: 0 auto;
+            max-width: 530px;
+        }
+
+        &.-line {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        &.-line:after {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: #f0f0f0;
+            content: '';
+        }
+
+        &.-info .admin__fieldset {
+            padding-bottom: 0;
+        }
+
+        .fieldset-wrapper-title {
+            border-bottom: none;
+        }
+
+        .fieldset-wrapper-title > .admin__collapsible-title,
+        .fieldset-wrapper-title > .title {
+            padding-bottom: 0;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        > .admin__fieldset-wrapper-content > .admin__fieldset {
+            padding-top: 0;
+            width: @amgroupcat-with-tooltip__width;
+        }
+
+        .admin__fieldset-wrapper-content .admin__fieldset>*:last-child {
+            margin-bottom: 0;
+
+            .admin__action-multiselect-wrap {
+                width: @amgroupcat-with-tooltip__width;
+            }
+        }
+    }
+
+    .amgroupcat-fieldset-container .admin__field:not(.admin__field-option) {
+        & {
+            margin: 10px 0 20px;
+        }
+
+        &.amgroupcat-field-input.-text .admin__field-control,
+        .admin__field-label {
+            text-align: left;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .admin__field-control,
+        .admin__field-label {
+            & {
+                float: none;
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .admin__control-select {
+                width: @amgroupcat-with-tooltip__width;
+            }
+        }
+    }
+
+    .amgroupcat-fieldset-container.-custom {
+        .amgroupcat-note {
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .admin__collapsible-title:before {
+            color: #ccc;
+        }
+
+        &.admin__collapsible-block-wrapper.fieldset-wrapper {
+            border-bottom: none;
+        }
+
+        &.-line .admin__fieldset,
+        &.-line .fieldset-wrapper-title {
+            padding-bottom: 30px;
+        }
+    }
+
+    .amgroupcat-field-select .admin__control-select,
+    .amgroupcat-field-multiselect .admin__control-multiselect,
+    .amgroupcat-field-input .admin__control-text {
+        width: @amgroupcat-with-tooltip__width;
+        border: 1px solid #ccc;
+        border-radius: 1px;
+    }
+
+    .amgroupcat-field-select .admin__field-note {
+        width: @amgroupcat-with-tooltip__width;
+    }
+
+    .amgroupcat-field-multiselect .admin__control-multiselect {
+        max-height: 130px;
+    }
+
+    .amgroupcat-field-checkbox .admin__actions-switch-label {
+        & {
+            height: @amgroupcat-checkbox__length;
+            line-height: @amgroupcat-checkbox__length;
+        }
+
+        &:before {
+            width: @amgroupcat-checkbox__length;
+            height: @amgroupcat-checkbox__length;
+        }
+
+        &:after {
+            height: @amgroupcat-checkbox__length;
+            background: #ededed;
+        }
+    }
+
+    .admin__actions-switch-checkbox:checked + .admin__actions-switch-label:before {
+        left: 18px;
+    }
+
+    .admin__actions-switch-checkbox:checked + .admin__actions-switch-label:after {
+        background: #4ac139;
+    }
+
+    .amgroupcat-fieldset-child .admin__fieldset {
+        padding-top: 0;
+    }
+
+    .amgroupcat-fieldset-child .amgroupcat-flex-container {
+        & {
+            display: flex;
+        }
+
+        .admin__field {
+            margin-top: 0;
+            width: 50%;
+        }
+
+        .admin__field:first-child {
+            margin-right: 40px;
+        }
+
+        .amgroupcat-field-input .admin__control-text {
+            width: 100%;
+        }
+
+        ._has-datepicker + .ui-datepicker-trigger:after {
+            width: 24px;
+            height: 24px;
+            background: @amgroupcat-datepicker__background-image no-repeat center;
+            content: '';
+        }
+    }
+
+    .rule-tree-wrapper ul .rule-param-edit .element input.input-date[readonly] + .ui-datepicker-trigger {
+        width: 160px;
+    }
+
+    .amgroupcat-condition-wrapper {
+        & {
+            position: relative;
+        }
+
+        .amgroupcat-tooltip {
+            margin-left: 5px;
+            margin-top: -2px;
+        }
+
+        .amgroupcat-image {
+            bottom: 40px;
+            left: -20px;
+            width: 35vw;
+        }
+
+        .amgroupcat-image:before,
+        .amgroupcat-image:after {
+            bottom: 0;
+            left: 16px;
+        }
+    }
+
+    .amgroupcat-fieldset-container .amgroupcat-radio-container {
+        .admin__control-radio + label:before {
+            border: 1px solid #ccc;
+        }
+
+        .admin__control-radio:checked + label:before {
+            width: 16px;
+            height: 16px;
+            border: none;
+            background: @amgroupcat-radio-checked__background no-repeat center;
+        }
+
+        .admin__control-radio:checked + label:after {
+            content: none;
+        }
+
+        .admin__field.admin__field-option ~ .admin__field-option {
+            margin-top: 5px;
+        }
+
+        .admin__field-option .admin__field-label {
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .admin__field-control._with-tooltip .admin__field-option {
+            display: block;
+        }
+
+        .admin__field-tooltip {
+            margin-left: 25px;
+        }
+
+        .admin__field-tooltip .admin__field-tooltip-content {
+            right: -50px;
+        }
+    }
+
+    .amgroupcat-html-content.admin__scope-old .rule-chooser {
+        z-index: 200000;
+        margin-left: -35%;
+        width: 160%;
+        background: #fff;
+    }
+}
