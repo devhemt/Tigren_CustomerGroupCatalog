@@ -20,5 +20,10 @@ class Rule extends AbstractDb
     {
         $this->_init('tigren_customergroupcatalog_rule', 'rule_id');
     }
+
+    public function afterSave(\Magento\Framework\DataObject $object)
+    {
+        parent::afterSave($object);
+    }
 }
 

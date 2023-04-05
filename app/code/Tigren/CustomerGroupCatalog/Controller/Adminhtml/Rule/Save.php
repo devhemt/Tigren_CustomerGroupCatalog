@@ -48,16 +48,11 @@ class Save extends \Magento\Backend\App\Action
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
 
-        $conn = $this->_resource->getConnection();
-        $save = $conn->insert('customer_group_catalog_history', [
-            'order_id' => 1,
-            'customer_id' => 1,
-            'rule_id' => 1
-        ]);
-        dd($data);
+        //        dd($data);
         if ($data) {
             $conditions = $data['rule']['conditions'];
             array_shift($conditions);
+            dd($conditions);
             $collection = $this->productCollectionFactory->create();
             $stem = [];
             foreach ($conditions as $c) {
@@ -68,7 +63,7 @@ class Save extends \Magento\Backend\App\Action
                     }
                 }
             }
-            array_unique($stem);
+            $stem = array_unique($stem);
 
             $id = $this->getRequest()->getParam('rule_id');
 

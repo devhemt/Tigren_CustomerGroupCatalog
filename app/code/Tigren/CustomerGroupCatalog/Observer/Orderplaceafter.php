@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2023 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
 
 namespace Tigren\CustomerGroupCatalog\Observer;
 
@@ -20,6 +25,7 @@ class Orderplaceafter implements ObserverInterface
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         try {
+
             $conn = $this->_resource->getConnection();
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             $session = $objectManager->get('\Magento\Customer\Model\Session');
@@ -31,12 +37,13 @@ class Orderplaceafter implements ObserverInterface
             $cusgroupid = $session->getCustomer()->getGroupId();
 
             $items = $order->getAllVisibleItems();
-            $productid = [];
+            $productids = [];
             foreach ($items as $item) {
-                $productid[] = $item->getProductId();
+                $productids[] = $item->getProductId();
             }
+            $rules = array();
 
-            foreach ($productid as $p) {
+            foreach ($productids as $p) {
                 $select = $conn->select()
                     ->from(['so' => $this->_resource->getTableName('tigren_customergroupcatalog_rule')])
                     ->join(['soi' => $this->_resource->getTableName('tigren_rule_store')],
@@ -45,7 +52,7 @@ class Orderplaceafter implements ObserverInterface
                         'so.rule_id = soii.rule_id')
                     ->join(['soiii' => $this->_resource->getTableName('tigren_rule_products')],
                         'so.rule_id = soiii.rule_id',)
-                    ->where('product_id =' . $p->getId())
+                    ->where('product_id =' . $p)
                     ->where('store_id = ' . $storeid)
                     ->where('customer_group_id = ' . $cusgroupid);
                 $result = $conn->fetchAll($select);
@@ -60,12 +67,21 @@ class Orderplaceafter implements ObserverInterface
                         $ruleid = $r['rule_id'];
                     }
                 }
+
+                $rules[] = $ruleid;
+            }
+
+
+            $rules = array_unique($rules);
+
+            foreach ($rules as $rule) {
                 $save = $conn->insert('customer_group_catalog_history', [
                     'order_id' => $orderid,
                     'customer_id' => $customerid,
-                    'rule_id' => $ruleid
+                    'rule_id' => $rule
                 ]);
             }
+
 
         } catch (\Exception $e) {
             $this->logger->info($e->getMessage());

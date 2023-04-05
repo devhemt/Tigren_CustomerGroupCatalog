@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2023 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
 
 namespace Tigren\CustomerGroupCatalog\Pricing\Render;
 
@@ -53,15 +58,16 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
                 ->where('store_id = ' . $storeManager->getStore()->getStoreId())
                 ->where('customer_group_id = ' . $session->getCustomer()->getGroupId());
             $result = $conn->fetchAll($select);
-
+            //            dd($result);
             $max = 0;
-            $discount = 0;
+            $discount = 1;
             foreach ($result as $r) {
                 if ($r['priority'] > $max) {
                     $max = $r['priority'];
                     $discount = $r['discount_amount'];
                 }
             }
+            //            dd($discount);
         }
 
 
